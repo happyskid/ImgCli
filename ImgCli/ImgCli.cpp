@@ -5,13 +5,19 @@
 #include "stb_image.h"
 #include "colors.hpp"
 
-int main()
+int main(int argc, char *argv[])
 {
+    if (argc < 2)
+    {
+        std::cout << "Missing 1 argument (file path)" << std::endl;
+        return 1;
+    }
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     std::string density = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/|()1{}[]?-_+~<>i!lI;:, ^ `'.";
     int k,w,h,c,densityLen;
-    unsigned char* img = stbi_load("./test.png", &w, &h, &c, 3);
+    unsigned char* img = stbi_load(argv[1], &w, &h, &c, 3);
     densityLen = density.size()-1;
+    SetConsoleTextAttribute(hConsole, 11);
 
     if (img == NULL)
     {
