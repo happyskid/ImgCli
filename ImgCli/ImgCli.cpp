@@ -3,42 +3,8 @@
 #include <windows.h>
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
+#include "colors.hpp"
 
-int getColor(float rgb[3])
-{
-    int maxIndx = 3;
-    int offset = 0;
-    for (int i = 0; i < 3; i++)
-    {
-        if (rgb[i] > rgb[maxIndx])
-        {
-            maxIndx = i;
-            if (rgb[i]>128)
-            {
-                offset = 8;
-            } else 
-            {
-                offset = 0;
-            }
-        }
-    }
-
-    switch (maxIndx)
-    {
-        case 0:
-            return 4 + offset;
-            break;
-        case 1:
-            return 2 + offset;
-            break;
-        case 2:
-            return 1 + offset;
-            break;
-        case 3:
-            return 15;
-            break;
-    }
-}
 int main()
 {
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -61,15 +27,15 @@ int main()
         for (int i = 0; i < w; i++)
         {
             unsigned char* pixelOffset = img + (i + w * j) * (unsigned)c;
-            float rgb[3] =
-            {
-                (float)pixelOffset[0],
-                (float)pixelOffset[1],
-                (float)pixelOffset[2]
+            rgb color_rgb = {
+                (double)pixelOffset[0],
+                (double)pixelOffset[1],
+                (double)pixelOffset[2]
             };
-            float indx = (((rgb[0]+rgb[1]+rgb[2])/3)/255)*densityLen;
+            hsv color_hsv = rgb2hsv(color_rgb);
+            double indx = (((color_rgb.r+color_rgb.g+color_rgb.b)/3)/255)*densityLen;
             char ascii = density[(int)indx];
-            SetConsoleTextAttribute(hConsole, getColor(rgb));
+            SetConsoleTextAttribute(hConsole, consoleColor(color_hsv));
             std::cout << ascii;
         }
         std::cout << std::endl;

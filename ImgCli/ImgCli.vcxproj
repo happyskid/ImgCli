@@ -130,6 +130,7 @@
     <ClCompile Include="ImgCli.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="colors.hpp" />
     <ClInclude Include="stb_image.h" />
   </ItemGroup>
   <ItemGroup>
