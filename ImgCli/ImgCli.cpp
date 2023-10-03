@@ -1,6 +1,7 @@
 #include <iostream>
 #include <string>
 #include <windows.h>
+#include <fstream>
 #define STB_IMAGE_IMPLEMENTATION
 #include "stb_image.h"
 #include "colors.hpp"
@@ -16,7 +17,6 @@ int main(int argc, char *argv[])
     std::string density = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/|()1{}[]?-_+~<>i!lI;:, ^ `'.";
     int k,w,h,c,densityLen;
     unsigned char* img = stbi_load(argv[1], &w, &h, &c, 3);
-    densityLen = density.size()-1;
     SetConsoleTextAttribute(hConsole, 11);
 
     if (img == NULL)
@@ -24,6 +24,22 @@ int main(int argc, char *argv[])
         std::cout << "Failed to load image";
         return 1;
     }
+
+    if (argc > 2)
+    {
+        std::ifstream densityFile (argv[2]);
+        if (densityFile.is_open())
+        {
+            densityFile >> density;
+            densityFile.close();
+        }
+        else
+        {
+            std::cout << "Unable to open file" << std::endl;
+        }
+    }
+
+    densityLen = density.size() - 1;
 
     std::cout << "Loaded: " << w << "x" << h << "px image with " << c << " channels" << std::endl << "Press any key";
     std::cin.get();
