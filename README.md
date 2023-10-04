@@ -14,4 +14,6 @@ LINUX VERSION: https://github.com/reallypseudo/ImgCmd
 * any image with more than 3 channels (RGB) will completely break: repeating image on x axis with artifacts and incorrect (mostly blue) colors, even going beyond the max color code including a blue background.
 
 ## Preview
+![image](https://github.com/reallypseudo/ImgCli/assets/126140186/c1ddc3bd-a63b-4887-b5c1-2496a1b27e19)
+
 ![image](https://github.com/reallypseudo/ImgCli/assets/126140186/57b82394-82c9-4535-9bdf-6f9c7e8e59d1)
