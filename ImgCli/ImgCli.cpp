@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
     std::cin.tie(NULL);
     if (argc < 2)
     {
-        std::cout << "Missing 1 argument (file path)" << std::endl;
+        std::cout << "Missing 1 argument (file path)\n";
         return 1;
     }
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
@@ -26,7 +26,7 @@ int main(int argc, char *argv[])
 
     if (img == NULL)
     {
-        std::cout << "Failed to load image";
+        std::cout << "Failed to load image\n";
         return 1;
     }
 
@@ -40,13 +40,13 @@ int main(int argc, char *argv[])
         }
         else
         {
-            std::cout << "Unable to open file" << std::endl;
+            std::cout << "Unable to open file\n";
         }
     }
 
     densityLen = density.size() - 1;
 
-    std::cout << "Loaded: " << w << "x" << h << "px image with " << c << " channels" << std::endl << "Press any key";
+    std::cout << "Loaded: " << w << "x" << h << "px image with " << c << " channels\n" << "Press any key\n";
     std::cin.get();
 
     for (int j = 0; j < h; j++) 
@@ -71,7 +71,7 @@ int main(int argc, char *argv[])
             SetConsoleTextAttribute(hConsole, consoleColor(color_hsv));
             std::cout << ascii;
         }
-        std::cout << std::endl;
+        std::cout << "\n";
     }
 
     std::cin.get();
