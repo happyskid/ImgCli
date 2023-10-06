@@ -18,12 +18,15 @@
     <ClCompile Include="ImgCli.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="ascii_image.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="stb_image.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="colors.hpp">
+    <ClInclude Include="ascii_image.hpp">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
