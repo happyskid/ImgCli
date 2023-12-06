@@ -19,10 +19,10 @@ int main(int argc, char *argv[])
     }
     HANDLE hConsole = GetStdHandle(STD_OUTPUT_HANDLE);
     std::string density = "$@B%8&WM#*oahkbdpqwmZO0QLCJUYXzcvunxrjft/|()1{}[]?-_+~<>i!lI;:, ^ `'.";
-    int k,w,h,c,densityLen;
+    int k,w,h,c,densityLen; // width, height, channels, density string length
     unsigned int bytePerPixel = 4;
     unsigned char* img = stbi_load(argv[1], &w, &h, &c, bytePerPixel);
-    SetConsoleTextAttribute(hConsole, 11);
+    SetConsoleTextAttribute(hConsole, 11); // set console color
 
     if (img == NULL)
     {
@@ -30,6 +30,7 @@ int main(int argc, char *argv[])
         return 1;
     }
 
+    // if density txt file param exists use it
     if (argc > 2)
     {
         std::ifstream densityFile (argv[2]);
@@ -49,6 +50,7 @@ int main(int argc, char *argv[])
     std::cout << "Loaded: " << w << "x" << h << "px image with " << c << " channels\n" << "Press any key\n";
     std::cin.get();
 
+    // print lines
     for (int j = 0; j < h; j++) 
     {
         for (int i = 0; i < w; i++)
